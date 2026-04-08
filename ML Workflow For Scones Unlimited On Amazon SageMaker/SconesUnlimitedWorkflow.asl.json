@@ -1,0 +1,21 @@
+{
+  "Comment": "ML Workflow for Scones Unlimited",
+  "StartAt": "serializeImageData",
+  "States": {
+    "serializeImageData": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:915346260059:function:serializeImageData",
+      "Next": "classifyImage"
+    },
+    "classifyImage": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:915346260059:function:classifyImage",
+      "Next": "filterLowConfidence"
+    },
+    "filterLowConfidence": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:915346260059:function:filterLowConfidence",
+      "End": true
+    }
+  }
+}
